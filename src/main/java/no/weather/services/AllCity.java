@@ -35,7 +35,7 @@ public class AllCity {
     public City getCityByName(String byNavn){
         city = new City();
         for (City citys:cityList) {
-            if(citys.getByNavn().equals(byNavn)) {
+            if(citys.getByNavn().equalsIgnoreCase(byNavn)) {
                 city = citys;
                 return city;
             }
@@ -59,7 +59,7 @@ public class AllCity {
                 }
             }
             int postnummer = Integer.parseInt(temp[0]);
-            cityList.add(new City(temp[1],postnummer,url));
+            cityList.add(new City(temp[1], postnummer,url));
         }
     }
 }
