@@ -35,6 +35,10 @@ public class MainController {
     public ResponseEntity<?> getWeather(@RequestParam(value="byNavn")String byNavn) throws IOException, JAXBException {
         City city = allCity.getCityByName(byNavn);
 
+        if (city == null) {
+            return ResponseEntity.badRequest().body("Klarer ikke finne by");
+        }
+
         URL url = new URL(city.getUrl());
         JAXBContext jaxbContext = JAXBContext.newInstance(Weatherdata.class);
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
